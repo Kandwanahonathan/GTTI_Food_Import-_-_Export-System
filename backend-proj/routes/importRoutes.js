@@ -44,11 +44,11 @@ router.put('/updateImport/:_id', async(req,res) =>{
     }
 })
 // delete data in the database
-router.delete('/deleteFood/:_id', async(req,res)=>{
+router.delete('/deleteImport/:_id', async(req,res)=>{
     try {
         const {_id} =req.params
-        const deleteFood=await food.findByIdAndDelete(_id)
-        return res.status(200).json({message:"food Deleted succcessfully",delete:deleteFood})
+        const deleteImport=await imports.findByIdAndDelete(_id)
+        return res.status(200).json({message:"import Deleted succcessfully",delete:deleteImport})
     } catch (err) {
         console.log(err);
         return res.status(500).json({Error:err})
