@@ -6,6 +6,6 @@ const exportSchema=new Schema({
     ExportDate :{types:String, required: true},
     Quantity :{types:Number, required: true}
 })
-const imports= mongoose.model('Imports',importSchema)
+const exports= mongoose.model('Exports',importSchema)
 
-module.exports=imports
+module.exports=exports

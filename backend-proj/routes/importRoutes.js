@@ -36,7 +36,13 @@ router.put('/updateImport/:_id', async(req,res) =>{
         const {_id}=req.params
          const {I_Id,Food_Id,Food_OwnerName,Quantity} =req.body
 
-         const updateImport= await imports.findByIdAndUpdate(_id,{I_Id,Food_Id,Food_OwnerName,Quantity},{returnDocument:'after'})
+         let update={}
+         if(I_Id)update.I_Id=I_Id
+         if(Food_Id)update.Food_Id=Food_Id
+         if(Food_OwnerName)update.Food_OwnerName=Food_OwnerName
+         if(Quantity)update.Quantity=Quantity
+
+         const updateImport= await imports.findByIdAndUpdate(_id,update,{returnDocument:'after'})
          return res.status(200).json({message:"import updated successfully",update:updateImport})
     } catch (err) {
          console.log(err);
