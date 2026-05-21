@@ -36,7 +36,12 @@ router.put('/updateFood/:_id', async(req,res) =>{
         const {_id}=req.params
          const {Food_Id,Food_Name,Food_OwnerName} =req.body
 
-         const updateFood=await food.findByIdAndUpdate(_id,{Food_Id,Food_Name,Food_OwnerName},{returnDocument:'after'})
+         let updates = {}
+         if (Food_Id) updates.Food_Id = Food_Id;
+         if (Food_Name) updates.Food_Name = Food_Name;
+         if (Food_OwnerName) updates.Food_OwnerName = Food_OwnerName;
+
+         const updateFood=await food.findByIdAndUpdate(_id, updates, {returnDocument:'after'})
          return res.status(200).json({message:"food updated successfully",update:updateFood})
     } catch (err) {
          console.log(err);

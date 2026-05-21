@@ -4,10 +4,10 @@ import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
 import './App.css'
 import { BrowserRouter,Route,Routes } from 'react-router-dom' 
-import AddFood from './pages/addRoute'
-import SelectFood from './pages/selectFood'
-import UpdateFood from './pages/updateFood'
-
+import AddFood from './pages/foodRoute/addRoute'
+import SelectFood from './pages/foodRoute/selectFood'
+import UpdateFood from './pages/foodRoute/updateFood'
+import Dashboard from './pages/dashboard/dash'
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
       <Route path='/' element={<AddFood/>}/>
       <Route path='/foodSelect' element={<SelectFood/>}/>
       <Route path='/updateFood/:_id' element={<UpdateFood/>}/>
+      <Route path='/dashboard' element={<Dashboard />} />
      </Routes>
 
      </BrowserRouter>
