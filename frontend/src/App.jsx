@@ -7,9 +7,7 @@ import { BrowserRouter,Route,Routes } from 'react-router-dom'
 import AddFood from './pages/foodRoute/addRoute'
 import SelectFood from './pages/foodRoute/selectFood'
 import UpdateFood from './pages/foodRoute/updateFood'
-import Dashboard from './pages/dashboard/dash'
-
-function App() {
+  function App() {
   return (
     <>
      <BrowserRouter> 
@@ -18,7 +16,7 @@ function App() {
       <Route path='/' element={<AddFood/>}/>
       <Route path='/foodSelect' element={<SelectFood/>}/>
       <Route path='/updateFood/:_id' element={<UpdateFood/>}/>
-      <Route path='/dashboard' element={<Dashboard />} />
+      
      </Routes>
 
      </BrowserRouter>
