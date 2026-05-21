@@ -2,10 +2,10 @@ const mongoose=require('mongoose')
 const {Schema}= mongoose
 const exportSchema=new Schema({
     E_Id:{type:Number, required:true , unique:true},
-     Food_Id:{type:mongoose.Types.ObjectID,ref:'food', required:true },
-    ExportDate :{types:String, required: true},
-    Quantity :{types:Number, required: true}
+     Food_Id:{type:mongoose.Schema.Types.ObjectID,ref:'food', required:true },
+    ExportDate :{type:String, required: true},
+    Quantity :{type:Number, required: true}
 })
-const exports= mongoose.model('Exports',importSchema)
+const exportModel= mongoose.model('Exports',exportSchema)
 
-module.exports=exports
+module.exports=exportModel

@@ -1,6 +1,6 @@
 const express=require('express')
 const router =express.Router()
-const exports=require('../schema/exportSchema')
+const exit=require('../schema/exportSchema')
 
 router.post('/addExport',async(req,res)=>{
     try {
@@ -8,8 +8,8 @@ router.post('/addExport',async(req,res)=>{
         if (!E_Id || !Food_Id || !ExportDate || !Quantity) {
             return res.status(403).json({message:"please fill out missing field"})
         }
-        const addExport=await exports.create({E_Id,Food_Id,ExportDate ,Quantity})
-        return res.status(201).json({message:"import added successfully",added:addExport})
+        const addExport=await exit.create({E_Id,Food_Id,ExportDate ,Quantity})
+        return res.status(201).json({message:"export added successfully",added:addExport})
     } catch (err) {
         console.log(err);
         return res.status(500).json({Error:err})
@@ -21,7 +21,7 @@ router.post('/addExport',async(req,res)=>{
 
 router.get('/exportList', async(req,res)=>{
     try {
-        const exportList= await exports.find()
+        const exportList= await exit.find()
         return res.status(200).json({success:true ,list:exportList})
     } catch (err) {
         console.log(err);
@@ -31,7 +31,7 @@ router.get('/exportList', async(req,res)=>{
 
 //update the data in database
 
-router.put('/updateExports/:_id', async(req,res) =>{
+router.put('/updateexit/:_id', async(req,res) =>{
     try {
         const {_id}=req.params
          const {E_Id,Food_Id,ExportDate,Quantity} =req.body
@@ -42,8 +42,8 @@ router.put('/updateExports/:_id', async(req,res) =>{
          if(ExportDate)update.ExportDate=ExportDate
          if(Quantity)update.Quantity=Quantity
 
-         const updateImport= await exports.findByIdAndUpdate(_id,update,{returnDocument:'after'})
-         return res.status(200).json({message:"import updated successfully",update:updateImport})
+         const updateImport= await exit.findByIdAndUpdate(_id,update,{returnDocument:'after'})
+         return res.status(200).json({message:"export updated successfully",update:updateImport})
     } catch (err) {
          console.log(err);
         return res.status(500).json({Error:err})
@@ -53,8 +53,8 @@ router.put('/updateExports/:_id', async(req,res) =>{
 router.delete('/deleteImport/:_id', async(req,res)=>{
     try {
         const {_id} =req.params
-        const deleteImport=await exports.findByIdAndDelete(_id)
-        return res.status(200).json({message:"import Deleted succcessfully",delete:deleteImport})
+        const deleteImport=await exit.findByIdAndDelete(_id)
+        return res.status(200).json({message:"export Deleted succcessfully",delete:deleteImport})
     } catch (err) {
         console.log(err);
         return res.status(500).json({Error:err})
