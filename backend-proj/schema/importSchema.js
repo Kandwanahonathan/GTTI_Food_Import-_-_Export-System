@@ -2,7 +2,7 @@ const mongoose=require('mongoose')
 const {Schema}= mongoose
 const importSchema=new Schema({
     I_Id:{type:Number, required:true , unique:true},
-    Food_Id:{type:mongoose.Types.ObjectId,ref:'food', required:true },
+    Food_Id:{type:mongoose.Types.ObjectId,ref:'Foods', required:true },
     Food_OwnerName :{type:String, required: true},
     Quantity :{type:Number, required: true}
 })

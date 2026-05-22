@@ -21,7 +21,7 @@ router.post('/addImport',async(req,res)=>{
 
 router.get('/importList', async(req,res)=>{
     try {
-        const importList= await imports.find()
+        const importList= await imports.find().populate("Food_Id")
         return res.status(200).json({success:true ,list:importList})
     } catch (err) {
         console.log(err);
