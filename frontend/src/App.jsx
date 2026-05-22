@@ -9,6 +9,7 @@ import SelectFood from './pages/foodRoute/selectFood'
 import UpdateFood from './pages/foodRoute/updateFood'
 import RegisterImport from './pages/importRoute/registerImport'
 import SelectImport from './pages/importRoute/selectImport'
+import UpdateImport from './pages/importRoute/update'
   function App() {
   return (
     <>
@@ -20,6 +21,7 @@ import SelectImport from './pages/importRoute/selectImport'
       <Route path='/updateFood/:_id' element={<UpdateFood/>}/>
       <Route path='/registerImport' element={<RegisterImport/>}/>
       <Route path='/selectImport' element={<SelectImport/>}/>
+      <Route path='/importUpdate' element={<UpdateImport/>}/>
       
       
      </Routes>

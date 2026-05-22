@@ -1,11 +1,12 @@
 import React,{useEffect, useState} from "react";
 
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function SelectImport() {
     const[selectImport,setSelectImport]=useState([])
     const[foods,setFoods]=useState([])
-
+    const navigate=useNavigate()
 
     useEffect(()=>{
         async function handleSelect() {
@@ -32,6 +33,18 @@ useEffect(()=>{
        }
        handleImport()
     },[])
+    const deleteImport= async (_id)=>{
+        const confirm=window.confirm('Are you sure')
+        try {
+            
+            if(!confirm) return;
+            await axios.delete(`http://localhost:5000/importRoute/deleteImport/${_id}`)
+            await handleSelect()
+
+        } catch (err) {
+             alert(err.response.data.message)
+        }
+    }
     return(
         <div className="bg-gray-300 min-h-screen flex justify-center items-center ">
            <div className="rounded-2xl shadow-2xl p-8 w-[900px]">
@@ -58,8 +71,10 @@ useEffect(()=>{
                             <td className="p-4 gap-4 p-3 mb-3 border-b-1">{sel.Food_OwnerName}</td>
                             <td className="p-4 gap-4 p-3 mb-3 border-b-1">{sel.Quantity}</td>
                             <td className="border-b-1">
-                      <button className="p-2 mb-3 bg-teal-700 rounded text-white mx-2 `">update</button>
-                            <button className="p-2 mb-3 bg-red-700 rounded text-white mx-2">delete</button> 
+                      <button className="p-2 mb-3 bg-teal-700 rounded text-white mx-2" onClick={()=>{navigate(`/importUpdate/${sel._id}`)}}>update</button>
+                            <button className="p-2 mb-3 bg-red-700 rounded text-white mx-2" onClick={()=>{
+                                deleteImport(sel._id)
+                            }}>delete</button> 
                             </td>
       
                         </tr>
