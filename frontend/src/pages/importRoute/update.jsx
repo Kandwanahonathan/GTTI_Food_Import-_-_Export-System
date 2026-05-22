@@ -11,10 +11,7 @@ export default function UpdateImport() {
 
    async function handleImportUpdate() {
         try {
-            if (!I_Id||!Food_Id||!Food_OwnerName||!Quantity) {
-                alert("please fill the mising")
-                return 
-            }
+           
             const res=await axios.put('http://localhost:5000/importRoute/addImport',{I_Id,Food_Id,Food_OwnerName,Quantity});
             setI_Id("")
             setFood_Id("")
@@ -46,7 +43,7 @@ export default function UpdateImport() {
     return(
         <div className="bg-gray-200 min-h-screen flex justify-center items-center">
             <div className="flex w-[900px] flex-col gap-4 p-9 rounded-2xl shadow-2xl">
-                <h3 className="text-center text-blue-700 text-2xl font-bold">REGISTER IMPORTS</h3>
+                <h3 className="text-center text-blue-700 text-2xl font-bold">UPDATE IMPORT</h3>
                 <input type="text" value={I_Id} onChange={(e)=>{setI_Id(e.target.value)}}
                 
                 className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter importID"/>

@@ -2,23 +2,23 @@ import React,{useState,useEffect} from "react";
 import axios from "axios";
 export default function RegisterExport() {
     
-    const [I_Id,setI_Id]=useState("")
+    const [E_Id,setE_Id]=useState("")
     const [Food_Id,setFood_Id]=useState("")
-    const [Food_OwnerName,setFood_OwnerName]=useState("")
+    const [ExportDate,setExportDate]=useState("")
     const [Quantity,setQuantity]=useState("")
     const [foods, setfoods]=useState([])
 
 
    async function handleRegister() {
         try {
-            if (!I_Id||!Food_Id||!Food_OwnerName||!Quantity) {
+            if (!E_Id||!Food_Id||!ExportDate||!Quantity) {
                 alert("please fill the mising")
                 return 
             }
-            const res=await axios.post('http://localhost:5000/importRoute/addImport',{I_Id,Food_Id,Food_OwnerName,Quantity});
-            setI_Id("")
+            const res=await axios.post('http://localhost:5000/exportRoute/addExport',{E_Id,Food_Id,ExportDate,Quantity});
+            setE_Id("")
             setFood_Id("")
-            setFood_OwnerName("")
+            setExportDate("")
             setQuantity("")
             alert(res.data.message)
 
@@ -34,7 +34,7 @@ export default function RegisterExport() {
             setfoods(res.data.list)
         } catch (err) {
             console.log(
-                { I_Id, Food_Id,Food_OwnerName, Quantity}
+                { E_Id, Food_Id,ExportDate, Quantity}
             );
             
             alert(err.response.data.message)
@@ -46,8 +46,8 @@ export default function RegisterExport() {
     return(
         <div className="bg-gray-200 min-h-screen flex justify-center items-center">
             <div className="flex w-[900px] flex-col gap-4 p-9 rounded-2xl shadow-2xl">
-                <h3 className="text-center text-blue-700 text-2xl font-bold">REGISTER IMPORTS</h3>
-                <input type="text" value={I_Id} onChange={(e)=>{setI_Id(e.target.value)}}
+                <h3 className="text-center text-blue-700 text-2xl font-bold">REGISTER EXPORTS</h3>
+                <input type="text" value={E_Id} onChange={(e)=>{setE_Id(e.target.value)}}
                 
                 className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter importID"/>
               <select value={Food_Id} onChange={(e)=>{setFood_Id(e.target.value)}} className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3" >
@@ -58,13 +58,13 @@ export default function RegisterExport() {
                     </option>
                 ))}
               </select>
-                <input type="text" value={Food_OwnerName} onChange={(e)=>{setFood_OwnerName(e.target.value)}} 
+                <input type="date" value={ExportDate} onChange={(e)=>{setExportDate(e.target.value)}} 
                 
-                className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter Food_OwnerName"/>
+                className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter ExportDate"/>
                 <input type="text" value={Quantity} onChange={(e)=>{setQuantity(e.target.value)}} 
                 
                 className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter Quantity"/>
-                <button className="bg-blue-500 p-2 rounded text-2xl text-white font-bold hover:bg-blue-700 transition duration-900 "  onClick={handleRegister}>RegisterImport</button>
+                <button className="bg-blue-500 p-2 rounded text-2xl text-white font-bold hover:bg-blue-700 transition duration-900 "  onClick={handleRegister}>RegisterExport</button>
             </div>
         </div>
     )

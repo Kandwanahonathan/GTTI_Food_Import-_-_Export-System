@@ -8,8 +8,7 @@ export default function SelectImport() {
     const[foods,setFoods]=useState([])
     const navigate=useNavigate()
 
-    useEffect(()=>{
-        async function handleSelect() {
+ async function handleSelect() {
             try {
                 const res=await axios.get('http://localhost:5000/importRoute/importList')
                 setSelectImport(res.data.list)
@@ -19,6 +18,9 @@ export default function SelectImport() {
                 
             }
         }
+
+
+    useEffect(()=>{
         handleSelect()
     },[])
 useEffect(()=>{
@@ -39,10 +41,12 @@ useEffect(()=>{
             
             if(!confirm) return;
             await axios.delete(`http://localhost:5000/importRoute/deleteImport/${_id}`)
-            await handleSelect()
+          
+            await handleSelect();
 
         } catch (err) {
-             alert(err.response.data.message)
+            //  alert(err.response?.data?.message)
+            console.log(err)
         }
     }
     return(

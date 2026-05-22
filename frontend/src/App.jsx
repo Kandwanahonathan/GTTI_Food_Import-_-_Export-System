@@ -10,6 +10,7 @@ import UpdateFood from './pages/foodRoute/updateFood'
 import RegisterImport from './pages/importRoute/registerImport'
 import SelectImport from './pages/importRoute/selectImport'
 import UpdateImport from './pages/importRoute/update'
+import RegisterExport from './pages/exportRoute/RegisterExport'
   function App() {
   return (
     <>
@@ -21,7 +22,8 @@ import UpdateImport from './pages/importRoute/update'
       <Route path='/updateFood/:_id' element={<UpdateFood/>}/>
       <Route path='/registerImport' element={<RegisterImport/>}/>
       <Route path='/selectImport' element={<SelectImport/>}/>
-      <Route path='/importUpdate' element={<UpdateImport/>}/>
+      <Route path='/importUpdate/:_id' element={<UpdateImport/>}/>
+      <Route path='/registerExport' element={<RegisterExport/>}/>
       
       
      </Routes>
