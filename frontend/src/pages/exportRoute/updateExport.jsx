@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-export default function RegisterExport() {
+export default function UpdateExport() {
     
     const [E_Id,setE_Id]=useState("")
     const [Food_Id,setFood_Id]=useState("")
@@ -11,13 +11,10 @@ export default function RegisterExport() {
     const navigate=useNavigate()
 
 
-   async function handleRegister() {
+   async function handleUpdateExport() {
         try {
-            if (!E_Id||!Food_Id||!ExportDate||!Quantity) {
-                alert("please fill the mising")
-                return 
-            }
-            const res=await axios.post('http://localhost:5000/exportRoute/addExport',{E_Id,Food_Id,ExportDate,Quantity});
+            
+            const res=await axios.put(`http://localhost:5000/exportRoute/updateExit/${_id}`,{E_Id,Food_Id,ExportDate,Quantity});
             setE_Id("")
             setFood_Id("")
             setExportDate("")
@@ -29,7 +26,7 @@ export default function RegisterExport() {
         }
     }
 
-    useEffect(()=>{
+    
        async function handleImport() {
         try {
             const res=await axios.get('http://localhost:5000/foodRoute/foodList')
@@ -42,13 +39,16 @@ export default function RegisterExport() {
             alert(err.response.data.message)
         }
        }
-       handleImport()
+       
+    useEffect(()=>{
+        handleImport()
     },[])
-
+    
+    
     return(
         <div className="bg-gray-200 min-h-screen flex justify-center items-center">
             <div className="flex w-[900px] flex-col gap-4 p-9 rounded-2xl shadow-2xl">
-                <h3 className="text-center text-blue-700 text-2xl font-bold">REGISTER EXPORTS</h3>
+                <h3 className="text-center text-blue-700 text-2xl font-bold">UPDATE EXPORTS</h3>
                 <input type="text" value={E_Id} onChange={(e)=>{setE_Id(e.target.value)}}
                 
                 className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter importID"/>
@@ -67,9 +67,9 @@ export default function RegisterExport() {
                 
                 className="border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 mb-4 mt-1 p-3"  placeholder="enter Quantity"/>
                 <button className="bg-blue-500 p-2 rounded text-2xl text-white font-bold hover:bg-blue-700 transition duration-900 "  onClick={()=>{
-                    handleRegister()
+                    handleUpdateExport()
                     navigate('/exportList')
-                }}>RegisterExport</button>
+                }}>UpdateExport</button>
             </div>
         </div>
     )

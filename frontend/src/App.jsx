@@ -12,6 +12,7 @@ import SelectImport from './pages/importRoute/selectImport'
 import UpdateImport from './pages/importRoute/update'
 import RegisterExport from './pages/exportRoute/RegisterExport'
 import SelectExport from './pages/exportRoute/selectExport'
+import UpdateExport from './pages/exportRoute/updateExport'
   function App() {
   return (
     <>
@@ -26,6 +27,7 @@ import SelectExport from './pages/exportRoute/selectExport'
       <Route path='/importUpdate/:_id' element={<UpdateImport/>}/>
       <Route path='/registerExport' element={<RegisterExport/>}/>
       <Route path='/exportList' element={<SelectExport/>}/>
+      <Route path='/updateExport/:_id' element={<UpdateExport/>}/>
       
       
      </Routes>

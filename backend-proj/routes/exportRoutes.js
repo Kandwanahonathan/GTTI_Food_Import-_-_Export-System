@@ -31,7 +31,7 @@ router.get('/exportList', async(req,res)=>{
 
 //update the data in database
 
-router.put('/updateexit/:_id', async(req,res) =>{
+router.put('/updateExit/:_id', async(req,res) =>{
     try {
         const {_id}=req.params
          const {E_Id,Food_Id,ExportDate,Quantity} =req.body
